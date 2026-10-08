@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Go Furniture</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="brand" href="#">GO<span>FURNITURE</span></a>
+    <nav>
+      <a href="#home">Home</a><a href="#products">Products</a><a href="#about">About</a>
+    </nav>
+    <button id="cartBtn">Cart (<span id="cartCount">0</span>)</button>
+  </div>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div>
+    <p class="eyebrow">MODERN FURNITURE</p>
+    <h1>Make your home<br><span>beautiful.</span></h1>
+    <p>Comfortable, modern furniture designed for everyday living.</p>
+    <a class="primary" href="#products">Shop Collection</a>
+  </div>
+</section>
+
+<section id="products" class="section">
+  <div class="heading">
+    <p class="eyebrow">OUR COLLECTION</p>
+    <h2>Featured Furniture</h2>
+    <p>Choose furniture that fits your space and your style.</p>
+  </div>
+  <div id="productsGrid" class="grid"></div>
+</section>
+
+<section id="about" class="about">
+  <div>
+    <p class="eyebrow">ABOUT GO FURNITURE</p>
+    <h2>Furniture made for real homes.</h2>
+    <p>We combine practical design, comfort and modern style to help you create spaces you love.</p>
+  </div>
+  <div class="stats">
+    <div><b>Quality</b><span>Carefully selected materials</span></div>
+    <div><b>Delivery</b><span>Reliable doorstep delivery</span></div>
+    <div><b>Support</b><span>Customer-first service</span></div>
+    <div><b>Value</b><span>Modern design at fair prices</span></div>
+  </div>
+</section>
+</main>
+
+<div id="toast"></div>
+
+<footer>
+  <p>© 2026 Go Furniture</p>
+  <p>Full-stack application: Frontend + Node.js API + PostgreSQL</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
