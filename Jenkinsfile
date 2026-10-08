@@ -1,3 +1,4 @@
+```groovy
 pipeline {
     agent any
 
@@ -7,6 +8,15 @@ pipeline {
             steps {
                 echo 'Checking out Go Furniture source code...'
                 checkout scm
+            }
+        }
+
+        stage('Test Kubernetes Access') {
+            steps {
+                echo 'Testing Kubernetes access from Jenkins...'
+
+                bat 'kubectl config current-context'
+                bat 'kubectl get nodes'
             }
         }
 
@@ -67,3 +77,4 @@ pipeline {
         }
     }
 }
+```
