@@ -18,6 +18,16 @@ pipeline {
                 bat 'kubectl get nodes'
             }
         }
+        stage('Deploy to Kubernetes') {
+             steps {
+                echo 'Deploying Go Furniture to Kubernetes...'
+
+                bat 'kubectl apply -f k8s/'
+                bat 'kubectl rollout status deployment/go-furniture-postgres'
+                bat 'kubectl rollout status deployment/go-furniture-backend'
+                bat 'kubectl rollout status deployment/go-furniture-frontend'
+            }
+        }
 
         stage('Build Backend Docker Image') {
             steps {
