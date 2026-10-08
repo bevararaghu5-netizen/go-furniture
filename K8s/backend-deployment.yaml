@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-furniture-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-furniture-backend
+  template:
+    metadata:
+      labels:
+        app: go-furniture-backend
+    spec:
+      containers:
+        - name: backend
+          image: raghu434/go-furniture-backend:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          env:
+            - name: PORT
+              value: "5000"
+            - name: DB_HOST
+              value: go-furniture-postgres
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: gofurniture
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASSWORD
+              value: postgres

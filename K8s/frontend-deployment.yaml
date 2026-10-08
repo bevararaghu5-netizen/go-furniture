@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-furniture-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: go-furniture-frontend
+  template:
+    metadata:
+      labels:
+        app: go-furniture-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: raghu434/go-furniture-frontend:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80

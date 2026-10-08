@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-furniture-frontend
+spec:
+  selector:
+    app: go-furniture-frontend
+  ports:
+    - port: 80
+      targetPort: 80
+  type: NodePort
