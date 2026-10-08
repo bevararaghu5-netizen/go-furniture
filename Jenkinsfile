@@ -26,18 +26,43 @@ pipeline {
             }
         }
 
-        stage('Verify Docker Images') {
+        stage('Login to Docker Hub') {
             steps {
-                echo 'Checking Go Furniture Docker images...'
+                echo 'Logging in to Docker Hub...'
 
-                bat 'docker images go-furniture-backend'
-                bat 'docker images go-furniture-frontend'
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-credentials',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    bat 'docker login -u "%DOCKER_USERNAME%" -p "%DOCKER_PASSWORD%"'
+                }
+            }
+        }
+
+        stage('Tag Docker Images') {
+            steps {
+                echo 'Tagging images for Docker Hub...'
+
+                bat 'docker tag go-furniture-backend:1.0 raghu434/go-furniture-backend:1.0'
+                bat 'docker tag go-furniture-frontend:1.0 raghu434/go-furniture-frontend:1.0'
+            }
+        }
+
+        stage('Push Images to Docker Hub') {
+            steps {
+                echo 'Pushing Go Furniture images to Docker Hub...'
+
+                bat 'docker push raghu434/go-furniture-backend:1.0'
+                bat 'docker push raghu434/go-furniture-frontend:1.0'
             }
         }
 
         stage('Pipeline Success') {
             steps {
-                echo 'Backend and frontend Docker images built successfully!'
+                echo 'Go Furniture images pushed successfully to Docker Hub!'
             }
         }
     }
