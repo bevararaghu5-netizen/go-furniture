@@ -18,17 +18,26 @@ pipeline {
             }
         }
 
-        stage('Verify Docker Image') {
+        stage('Build Frontend Docker Image') {
             steps {
-                echo 'Checking backend Docker image...'
+                echo 'Building Go Furniture frontend Docker image...'
+
+                bat 'docker build -t go-furniture-frontend:1.0 ./frontend'
+            }
+        }
+
+        stage('Verify Docker Images') {
+            steps {
+                echo 'Checking Go Furniture Docker images...'
 
                 bat 'docker images go-furniture-backend'
+                bat 'docker images go-furniture-frontend'
             }
         }
 
         stage('Pipeline Success') {
             steps {
-                echo 'Backend Docker image built successfully!'
+                echo 'Backend and frontend Docker images built successfully!'
             }
         }
     }
