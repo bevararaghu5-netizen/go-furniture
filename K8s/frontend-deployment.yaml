@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: raghu434/go-furniture-frontend:1.0
-          imagePullPolicy: Always
+          image: raghu434/go-furniture-frontend:1.2
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
