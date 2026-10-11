@@ -1,40 +1,60 @@
-# Prometheus and Grafana — Monitoring Guide
+# Monitoring Guide — Prometheus and Grafana
 
-## Short explanation for interviews
+This guide supports the monitoring section of the Go Furniture DevOps project documentation.
 
-"I used Prometheus and Grafana in my DevOps learning projects. Prometheus collects and stores metrics from configured targets, and Grafana visualizes those metrics in dashboards. I check target health and confirm that queries return data. For Go Furniture specifically, I verify that the monitoring configuration is connected to the intended Kubernetes cluster or application before describing it as integrated monitoring."
+## Purpose
 
-## Responsibilities
+- **Prometheus** collects and stores metrics from configured scrape targets.
+- **Grafana** queries a configured data source such as Prometheus and displays metrics in dashboards.
 
-- **Prometheus:** scraping, storing, and querying time-series metrics.
-- **Grafana:** dashboards, panels, and visualization from a configured data source.
-- **Exporter / metrics endpoint:** makes metrics available for Prometheus to scrape.
-- **Target status:** indicates whether Prometheus can scrape a configured target; it does not prove that every desired metric is available.
+The metrics available depend on the exporters, endpoints, and scrape configuration actually deployed.
 
-## Verification
+## Verification walkthrough
 
-From PowerShell with the correct cluster context:
+### 1. Check the Kubernetes environment
+
+Run in PowerShell:
 
 ```powershell
-kubectl config current-context
 kubectl get pods -A
 kubectl get services -A
 kubectl get deployments -A
 ```
 
-In Prometheus:
-1. Open **Status → Targets**.
-2. Check the relevant target is `UP`.
-3. Query a metric supplied by that target and select a suitable time range.
+Identify the monitoring namespace and the actual Prometheus/Grafana service names in your environment. Do not assume a namespace or port.
 
-In Grafana:
-1. Verify the Prometheus data source.
-2. Open the intended dashboard.
-3. Check panel queries and confirm they return data.
-4. Capture genuine screenshots showing the real dashboard.
+### 2. Check Prometheus targets
 
-## Be specific about the monitoring scope
+1. Open the Prometheus UI using the actual service URL or port-forward configured in your cluster.
+2. Navigate to **Status → Targets**.
+3. Confirm that the target relevant to your demonstration is `UP`.
+4. Run a query for a metric exposed by that target and verify it returns data.
 
-- **Kubernetes/cluster monitoring:** metrics about pods, nodes, and cluster objects, depending on installed exporters.
-- **Application monitoring:** metrics emitted by the application or an application exporter, such as request counts or latency.
-- A Kubernetes dashboard does not automatically mean business/application-level metrics are being collected.
+A metric such as `kube_pod_info` is only available when the relevant Kubernetes-state metrics exporter is deployed and scraped.
+
+### 3. Check Grafana
+
+1. Open Grafana using its configured URL.
+2. Open **Connections / Data sources** and confirm the Prometheus data source works.
+3. Open the dashboard and select a suitable time range.
+4. Confirm that the panels return data.
+5. Be prepared to explain each panel's query and what it measures.
+
+## Be precise about the monitoring scope
+
+Use one of these descriptions depending on what you verified:
+
+- **Cluster monitoring:** Prometheus collects Kubernetes or node metrics and Grafana visualizes them.
+- **Application monitoring:** Prometheus scrapes application-specific metrics exposed by Go Furniture or its backend.
+- **Combined monitoring:** Both cluster metrics and application metrics are collected and visualized.
+
+Do not describe the project as having application-level monitoring unless the scrape target and metrics demonstrate that integration.
+
+## Suggested evidence to capture
+
+- Prometheus Targets page with relevant targets and their health.
+- Prometheus query result for a metric you can explain.
+- Grafana dashboard with a visible time range and meaningful panel titles.
+- Kubernetes pod/service output that establishes which environment is being monitored.
+
+Capture these from the actual running environment. Do not use fabricated dashboard screenshots.
