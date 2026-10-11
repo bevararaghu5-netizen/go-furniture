@@ -308,3 +308,21 @@ The technical walkthrough presents the application and its DevOps lifecycle:
 8. **Technical outcomes** — summarize practical experience with version control, CI/CD, containers, orchestration, database integration, monitoring, and deployment troubleshooting.
 
 The objective is to demonstrate a clear understanding of the application lifecycle, from source-code management and image creation through deployment, observability, and validation.
+
+## Author
+
+**GitHub:** [@bevararaghu5-netizen](https://github.com/bevararaghu5-netizen)  
+**Project repository:** [Go Furniture](https://github.com/bevararaghu5-netizen/go-furniture)
+
+## Credits and Acknowledgements
+
+- **Project implementation:** Go Furniture project owner, [@bevararaghu5-netizen](https://github.com/bevararaghu5-netizen).
+- **Technologies used:** Git, GitHub, Jenkins, Docker, Docker Hub, Kubernetes, Minikube, Nginx, PostgreSQL, Prometheus, and Grafana.
+- **Learning references:** The official documentation for the technologies used in this project.
+- **Project inspiration:** Add the original reference repository here if you used another project for inspiration: `https://github.com/OWNER/REPOSITORY`. Replace this placeholder with the correct URL, or remove this bullet if no external project was used.
+
+This is a hands-on learning and portfolio project. Credits for third-party code, assets, and examples should be added where they are actually used; do not imply that another project contributed code unless that is accurate.
+
+## License
+
+See the [LICENSE](LICENSE) file for the licensing terms of this repository.
